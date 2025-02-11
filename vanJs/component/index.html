@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>VanJS Custom Element Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lib/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanjs@0.1/dist/bundle.min.js"></script>
+    <script src="lib/script.js"></script>
+  </head>
+
+  <body>
+    <h1>Hello VanJs custom element! only backup</h1>
+
+    <div id="app"></div>
+    <script src="lib\app.js"></script>
+    <my-custom-element></my-custom-element>
+
+    <script>
+        // Define the custom element
+        class MyCustomElement extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+                this.render();
+            }
+
+            render() {
+                const { div, h1, p } = Van.tags;
+                const content = div(
+                    h1("Hello from VanJS!"),
+                    p("This is a custom element created using VanJS.")
+                );
+                this.shadowRoot.appendChild(content);
+            }
+        }
+
+        // Register the custom element
+        customElements.define('my-custom-element', MyCustomElement);
+    </script>
+
+    <my-custom-element></my-custom-element>
+
+
+  </body>
+</html>
+
+
